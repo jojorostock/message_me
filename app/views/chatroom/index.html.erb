@@ -4,43 +4,41 @@
 </h2>
 
 <div class="ui two column grid">
-    <div class="twelve wide column">
-        <div class="ui fluid raised card chatbox">
-            <div class="content">
-                <div class="ui small feed">
-                  <%= render @messages %>
-                </div>
-            </div>
-            <div class="extra content">
-                <form class="ui reply form">
-                    <div class="field">
-                        <div class="ui fluid icon input">
-                            <input type="text" placeholder="Enter a message">
-                            <i class="bordered inverted red edit icon"></i>
-                        </div>
-                    </div>
-              </form>
-            </div>
+  <div class="twelve wide column">
+    <div class="ui fluid raised card chatbox">
+      <div class="content">
+        <div class="ui feed">
+          <%= render @messages %>
         </div>
-    </div>
-
-    <div class="four wide column">
-        <div class="ui fluid raised card chatbox">
-            <div class="content">
-                <div class="ui inverted vertical menu">
-                  <a class="active item">
-                    Home
-                  </a>
-                  <a class="item">
-                    Messages
-                  </a>
-                  <a class="item">
-                    Friends
-                  </a>
-                </div>
+      </div>
+      <div class="extra content">
+        <%= form_for(@message, html: {class: "ui reply form", role: "form"}, url: message_path) do |f| %>
+          <div class="field">
+            <div class="ui fluid icon input">
+              <%= f.text_field :body %>
+              <%= f.button '<i class="bordered inverted red edit icon"></i>'.html_safe %>
             </div>
-        </div>
+          </div>
+        <% end %>
+      </div>
     </div>
+  </div>
 
-
+  <div class="four wide column">
+    <div class="ui fluid raised card chatbox">
+      <div class="content">
+        <div class="ui inverted vertical menu">
+          <a class="active item">
+            Home
+          </a>
+          <a class="item">
+            Messages
+          </a>
+          <a class="item">
+            Friends
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
