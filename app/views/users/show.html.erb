@@ -1,0 +1,21 @@
+<h1>Users</h1>
+<table class="ui selectable inverted table">
+<thead>
+    <tr>
+        <th class="center aligned">User</th>
+        <th class="center aligned">Add Friend</th>
+    </tr>
+</thead>
+<tbody>
+<% @users.each do |u| %>
+    <% if u != @user %>
+        <tr>
+            <td data-label="User" class="center aligned"><%= u.username%></td>
+            <td data-label="Friend" class="center aligned">
+                  <button class="ui inverted red button">Add</button>
+            </td>
+        </tr>
+    <%end%>
+<% end %>
+</tbody>
+</table>

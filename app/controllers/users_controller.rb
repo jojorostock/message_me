@@ -1,7 +1,18 @@
 class UsersController < ApplicationController
 
+    def profile
+        @user = current_user
+        @messages = Message.where(user_id: current_user.id)
+    end
+    
+    
     def new
 
+    end
+
+    def show
+        @users = User.all
+        @user = current_user
     end
 
     def create
