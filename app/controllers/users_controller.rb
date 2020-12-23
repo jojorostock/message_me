@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     def profile
         @user = current_user
         @messages = Message.where(user_id: current_user.id)
+        @friendships = Friendship.where(user_id: current_user.id)
     end
     
     
@@ -13,6 +14,7 @@ class UsersController < ApplicationController
     def show
         @users = User.all
         @user = current_user
+        @friendships = Friendship.where(user_id: current_user.id)
     end
 
     def create

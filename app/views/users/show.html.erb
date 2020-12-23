@@ -3,7 +3,7 @@
 <thead>
     <tr>
         <th class="center aligned">User</th>
-        <th class="center aligned">Add Friend</th>
+        <th class="center aligned">Add or Remove Friend</th>
     </tr>
 </thead>
 <tbody>
@@ -12,7 +12,11 @@
         <tr>
             <td data-label="User" class="center aligned"><%= u.username%></td>
             <td data-label="Friend" class="center aligned">
-                  <button class="ui inverted red button">Add</button>
+                <% if @friendships.where(friend_id: u.id).first%>
+                  <button class="ui inverted red button">Remove</button>
+                <%else%>
+                    <button class="ui inverted green button">Add</button>
+                <%end%>
             </td>
         </tr>
     <%end%>
