@@ -15,6 +15,7 @@
         <%= form_for(@message, html: {class: "ui reply form", role: "form"}, url: message_path) do |f| %>
           <div class="field">
             <div class="ui fluid icon input">
+              <%= f.file_field :images %>
               <%= f.text_field :body %>
               <%= f.button '<i class="bordered inverted red edit icon"></i>'.html_safe %>
             </div>
