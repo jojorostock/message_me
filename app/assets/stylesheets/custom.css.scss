@@ -1,19 +1,30 @@
 @import "semantic-ui";
 
 .chatbox {
-    height: 450px;
+  height: 450px;
 }
 
 .redText {
-    color: red;
+  color: red;
 }
 
 .profile-pic {
-    width: 20px !important;
-    height: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
 }
 
 .profile-page-pic {
-    width: 80px !important;
-    height: 80px !important;
+  width: 80px !important;
+  height: 80px !important;
+}
+
+#messages {
+  height: 15em;
+  overflow: auto;
+}
+
+.input {
+  button {
+    display: none;
+  }
 }

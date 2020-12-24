@@ -6,4 +6,6 @@ App.chatroom = App.cable.subscriptions.create "ChatroomChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
+    $('#messages-container').append data.mod_message
+    scroll_bottom()
     # Called when there's incoming data on the websocket for this channel
