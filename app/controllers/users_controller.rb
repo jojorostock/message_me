@@ -30,6 +30,7 @@ class UsersController < ApplicationController
             @user = User.create(
                 username: name,
                 password: params[:user][:password],
+                avatar: params[:user][:avatar],
                 color: colors[5*rand()]
             )
             flash[:success] = "User #{@user.username} was successfully created"

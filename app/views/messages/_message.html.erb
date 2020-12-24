@@ -1,7 +1,11 @@
 <div class="event">
   <div class="content">
     <div class="summary">
-      <%= image_tag ("profile.jpg"), class: "profile-pic"%>
+      <% if message.user.avatar.attached? %>
+        <%= image_tag message.user.avatar, class: "profile-pic"%>
+      <% else %>
+        <%= image_tag ("profile.jpg"), class: "profile-pic"%>
+      <%end%>
       <%= link_to 'user/'+message.user.id.to_s do %>
         <em style="color: <%= message.user.color %>">
           @<%= message.user.username %>
