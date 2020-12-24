@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     def show
         @users = User.all
         @user = current_user
-        @friendships = Friendship.where(user_id: current_user.id)
+        @friendships = current_user.friendships
     end
 
     def create
@@ -26,9 +26,21 @@ class UsersController < ApplicationController
             render 'new'
 
         else
-            @user = User.create(username: name,password: params[:user][:password])
+            colors = ['red', 'blue', 'green', 'orange', 'purple']
+            @user = User.create(
+                username: name,
+                password: params[:user][:password],
+                color: colors[5*rand()]
+            )
             flash[:success] = "User #{@user.username} was successfully created"
             redirect_to login_path
         end
+    end
+
+    def otherProfile
+        @user = User.find(params[:id])
+        @messages = Message.where(user_id: @user.id)
+        @friendships = Friendship.where(user_id: @user.id)
+        @curr = current_user
     end
 end

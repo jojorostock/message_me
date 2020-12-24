@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   post 'signup', to: 'users#create'
   get 'profile', to: 'users#profile'
   get 'users', to: 'users#show'
+  get 'users/:id', to: 'users#otherProfile'
+  post 'friendships', to: 'friendships#create'
+  # post 'friendships', to: 'friendships#destroy', method: delete
 
   mount ActionCable.server, at: '/cable'
 end

@@ -10,12 +10,14 @@
 <% @users.each do |u| %>
     <% if u != @user %>
         <tr>
-            <td data-label="User" class="center aligned"><%= u.username%></td>
+            <td data-label="User" class="center aligned" style="color: <%= u.color%>"><%= u.username%></td>
             <td data-label="Friend" class="center aligned">
                 <% if @friendships.where(friend_id: u.id).first%>
-                  <button class="ui inverted red button">Remove</button>
+                    <%= link_to 'Remove Friend?', friendships_path(friend_id: u.id),
+                              class: "ui inverted red button", method: :post %>
                 <%else%>
-                    <button class="ui inverted green button">Add</button>
+                <%= link_to 'Add Friend?', friendships_path(friend_id: u.id),
+                              class: "ui inverted green button", method: :post %>
                 <%end%>
             </td>
         </tr>

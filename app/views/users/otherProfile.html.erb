@@ -39,3 +39,11 @@
 <% end %>
 </tbody>
 </table>
+
+<% if @curr.friendships.where(friend_id: @user.id).first%>
+    <%= link_to 'Remove Friend?', friendships_path(friend_id: @user.id),
+            class: "ui inverted red button", method: :post %>
+<%else%>
+    <%= link_to 'Add Friend?', friendships_path(friend_id: @user.id),
+            class: "ui inverted green button", method: :post %>
+<%end%>
