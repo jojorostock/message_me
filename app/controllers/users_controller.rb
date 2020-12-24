@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+    before_action :require_user, only: [:profile, :show,]
+
+
     def profile
         @user = current_user
         @messages = Message.where(user_id: current_user.id)
