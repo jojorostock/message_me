@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post 'signup', to: 'users#create'
   get 'profile', to: 'users#profile'
   get 'users', to: 'users#show'
-  get 'users/:id', to: 'users#otherProfile'
+  get 'user/:id', to: 'user#show'
   post 'friendships', to: 'friendships#create'
   # post 'friendships', to: 'friendships#destroy', method: delete
 

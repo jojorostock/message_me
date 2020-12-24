@@ -13,7 +13,7 @@
     <tr>
       <td data-label="Time" class=""><%= friend.created_at.to_formatted_s(:long_ordinal)%></td>
       <td data-label="Body" style="color: <%= User.where(id: friend.friend_id).first.color %>">
-        <%= User.where(id: friend.friend_id).first.username%>
+        <%= link_to '/user/'+friend.friend_id.to_s do %><%= User.where(id: friend.friend_id).first.username%><%end%>
       </td>
     </tr>
 <% end %>

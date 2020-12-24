@@ -36,11 +36,4 @@ class UsersController < ApplicationController
             redirect_to login_path
         end
     end
-
-    def otherProfile
-        @user = User.find(params[:id])
-        @messages = Message.where(user_id: @user.id)
-        @friendships = Friendship.where(user_id: @user.id)
-        @curr = current_user
-    end
 end
