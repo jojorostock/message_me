@@ -17,7 +17,7 @@ class UsersController < ApplicationController
         @user = current_user
         if params[:user][:username]
             isUser = User.find_by(username: params[:user][:username])
-            if isUser
+            if isUser && User.find_by(username: params[:user][:username]).id != current_user.id
                 flash[:error] = "A user with the username: #{params[:user][:username]} already exists try another username"
                 render 'edit'
                 return
