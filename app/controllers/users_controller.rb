@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    before_action :require_user, only: [:profile, :show,]
+    before_action :require_user, only: [:profile, :show, :edit, :update]
 
 
     def profile
@@ -9,7 +9,30 @@ class UsersController < ApplicationController
         @friendships = Friendship.where(user_id: current_user.id)
     end
     
-    
+    def edit
+        @user = current_user
+    end
+
+    def update 
+        @user = current_user
+        if params[:user][:username]
+            isUser = User.find_by(username: params[:user][:username])
+            if isUser
+                flash[:error] = "A user with the username: #{params[:user][:username]} already exists try another username"
+                render 'edit'
+                return
+            else
+                @user.username = params[:user][:username]
+            end
+        end
+        if params[:user][:avatar]
+            @user.avatar = params[:user][:avatar]
+        end
+        @user.save
+        redirect_to profile_path
+    end
+
+
     def new
 
     end

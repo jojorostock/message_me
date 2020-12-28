@@ -1,0 +1,16 @@
+<%= form_for(:user, html: {class: "ui form", role: "form"}, url: profile_update_path) do |f| %>
+    <div class="field">
+        <%= f.label :username, "Username" %>
+        <div class="ui left icon input">
+            <%= f.text_field :username, placeholder: "Username" %>
+            <i class="user icon"></i>
+        </div>
+    </div>
+    <div class="field">
+        <%= f.label :avatar, "Avatar" %>
+        <div class="ui left icon image">
+            <%= f.file_field :avatar %>
+        </div>
+    </div>
+    <%= f.button "Save Changes", class: "ui orange submit button" %>
+<% end %>

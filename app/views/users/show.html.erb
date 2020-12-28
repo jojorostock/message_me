@@ -3,6 +3,8 @@
 <thead>
     <tr>
         <th class="center aligned">User</th>
+        <th class="center aligned">Message Count</th>
+        <th class="center aligned">Friends Count</th>
         <th class="center aligned">Add or Remove Friend</th>
     </tr>
 </thead>
@@ -23,6 +25,12 @@
                     </span>
                 <%end%>
                 
+            </td>
+            <td data-label="Message Count" class="center aligned">
+             <%= u.messages.count%>
+            </td>
+            <td data-label="Friends Count" class="center aligned">
+                <%= u.friendships.count%>
             </td>
             <td data-label="Friend" class="center aligned">
                 <% if @friendships.where(friend_id: u.id).first%>

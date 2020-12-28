@@ -6,7 +6,7 @@
       <% else %>
         <%= image_tag ("profile.jpg"), class: "profile-pic"%>
       <%end%>
-      <%= link_to 'user/'+message.user.id.to_s do %>
+      <%= link_to current_user == message.user ? profile_path : 'user/'+message.user.id.to_s do %>
         <em style="color: <%= message.user.color %>">
           @<%= message.user.username %>:
         </em><% end %> <%= message.body %>

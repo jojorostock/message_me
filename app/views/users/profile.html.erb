@@ -1,10 +1,27 @@
-<% if @user.avatar.attached? %>
-    <%= image_tag @user.avatar, class: "profile-page-pic"%>
-<% else %>
-    <%= image_tag ("profile.jpg"), class: "profile-page-pic"%>
-<%end%>
-
-<h1 style="color: <%= @user.color%>">@<%= @user.username%></h1>
+<h1 style="color: <%= @user.color%>">
+    <div class="ui grid container">
+        <div class="row items-vert-center">
+            <div class="two wide column">
+                <% if @user.avatar.attached? %>
+                    <%= image_tag @user.avatar, class: "profile-page-pic"%>
+                <% else %>
+                    <%= image_tag ("profile.jpg"), class: "profile-page-pic"%>
+                <%end%>
+            </div>
+            <div class="two wide column">
+            @<%= @user.username%>
+            </div>
+            <div class="two wide column">
+                <%= link_to profile_edit_path do %>
+                     <button class="ui inverted orange button">Edit Profile</button>
+                <% end %>        
+            </div>
+        </div>
+    </div>
+    
+    
+    
+</h1>
 
 <h2>Friends</h2>
 <table class="ui selectable inverted table">
