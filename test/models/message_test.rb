@@ -1,8 +1,11 @@
 require 'test_helper'
 
 class MessageTest < ActiveSupport::TestCase
-  test "Message creation should be valid" do
+  def setup 
     @user = User.new(username: "user", password: "password")
+  end
+
+  test "Message creation should be valid" do
     @user.save()
     @user = User.first
     @message = @user.messages.build(body: "test message")
@@ -10,7 +13,6 @@ class MessageTest < ActiveSupport::TestCase
   end
 
   test "Message creation should be valid if the user is not saved yet" do
-    @user = User.new(username:"test")
     @message = @user.messages.build(body: "test message")
     assert @message.valid?
   end

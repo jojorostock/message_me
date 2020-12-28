@@ -8,9 +8,41 @@
       <%end%>
       <%= link_to current_user == message.user ? profile_path : 'user/'+message.user.id.to_s do %>
         <em style="color: <%= message.user.color %>">
-          @<%= message.user.username %>:
-        </em><% end %> <%= message.body %>
-      
+          @<%= message.user.username %>
+        </em><% end %>
+        <%= message.created_at.to_formatted_s(:short)%>
+        <br/>
+          <%= message.body %>      
+    </div>
+  </div>
+</div>
+<div class="event">
+  <div class="content">
+    <div class="chat-message summary <%= current_user == message.user ? 'current-user-message' : '' %>">
+      <div class="ui two column grid">
+        <div class="two wide column">
+          <% if message.user.avatar.attached? %>
+            <%= image_tag message.user.avatar, class: "message-pic"%>
+          <% else %>
+            <%= image_tag ("profile.jpg"), class: "message-pic"%>
+          <%end%>
+        </div>
+        <div class="ten wide column">
+          <div class="ui one column grid">
+            <div class="column" style="padding-bottom:0">
+              <%= link_to current_user == message.user ? profile_path : 'user/'+message.user.id.to_s do %>
+                <em style="color: <%= message.user.color %>">
+                  @<%= message.user.username %>
+                </em>
+              <% end %>
+              <%= message.created_at.to_formatted_s(:short)%>
+            </div>
+            <div class="column">
+              <%= message.body %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
