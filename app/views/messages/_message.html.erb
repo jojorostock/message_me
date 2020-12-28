@@ -1,6 +1,6 @@
 <div class="event">
   <div class="content">
-    <div class="summary">
+    <div class="chat-message summary <%= current_user == message.user ? 'current-user-message' : '' %>">
       <% if message.user.avatar.attached? %>
         <%= image_tag message.user.avatar, class: "profile-pic"%>
       <% else %>
