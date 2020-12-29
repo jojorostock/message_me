@@ -1,21 +1,4 @@
-<div class="event">
-  <div class="content">
-    <div class="chat-message summary <%= current_user == message.user ? 'current-user-message' : '' %>">
-      <% if message.user.avatar.attached? %>
-        <%= image_tag message.user.avatar, class: "profile-pic"%>
-      <% else %>
-        <%= image_tag ("profile.jpg"), class: "profile-pic"%>
-      <%end%>
-      <%= link_to current_user == message.user ? profile_path : 'user/'+message.user.id.to_s do %>
-        <em style="color: <%= message.user.color %>">
-          @<%= message.user.username %>
-        </em><% end %>
-        <%= message.created_at.to_formatted_s(:short)%>
-        <br/>
-          <%= message.body %>      
-    </div>
-  </div>
-</div>
+
 <div class="event">
   <div class="content">
     <div class="chat-message summary <%= current_user == message.user ? 'current-user-message' : '' %>">
@@ -27,8 +10,8 @@
             <%= image_tag ("profile.jpg"), class: "message-pic"%>
           <%end%>
         </div>
-        <div class="ten wide column">
-          <div class="ui one column grid">
+        <div class="fourteen wide column">
+          <div class="ui one column grid" style="padding-left: 0">
             <div class="column" style="padding-bottom:0">
               <%= link_to current_user == message.user ? profile_path : 'user/'+message.user.id.to_s do %>
                 <em style="color: <%= message.user.color %>">
@@ -37,7 +20,7 @@
               <% end %>
               <%= message.created_at.to_formatted_s(:short)%>
             </div>
-            <div class="column">
+            <div class="column" style="padding-top:5px">
               <%= message.body %>
             </div>
           </div>
