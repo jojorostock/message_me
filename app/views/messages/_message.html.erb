@@ -21,6 +21,9 @@
               <%= message.created_at.to_formatted_s(:short)%>
             </div>
             <div class="column" style="padding-top:5px">
+              <% if message.photo.attached? %>
+                <%= image_tag message.photo, class: "message-pic"%>
+              <% end %>
               <%= message.body %>
             </div>
           </div>
