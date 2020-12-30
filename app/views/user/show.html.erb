@@ -18,6 +18,11 @@
     <tr>
       <td data-label="Time" class=""><%= friend.created_at.to_formatted_s(:long_ordinal)%></td>
       <td data-label="Body" style="color: <%= User.where(id: friend.friend_id).first.color %>">
+        <% if User.where(id: friend.friend_id).first.avatar.attached? %>
+            <%= image_tag User.where(id: friend.friend_id).first.avatar, class: "profile-pic", style:"vertical-align: text-bottom"%>
+        <% else %>
+            <%= image_tag ("profile.jpg"), class: "profile-pic", style:"vertical-align: text-bottom"%>
+        <%end%>
         <%= link_to '/user/'+friend.friend_id.to_s do %><%= User.where(id: friend.friend_id).first.username%><%end%>
       </td>
     </tr>
@@ -39,6 +44,10 @@
             <td data-label="Time" class=""><%= msg.created_at.to_formatted_s(:long_ordinal)%></td>
             <td data-label="Body" class="">
                 <%= msg.body%>
+                <% if msg.photo.attached? %>
+                    <br />
+                    <%= image_tag msg.photo, class: "message-body-pic"%>
+                <% end %>
             </td>
         </tr>
 <% end %>
