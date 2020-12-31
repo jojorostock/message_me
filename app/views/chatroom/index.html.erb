@@ -27,28 +27,28 @@
 
   <div class="four wide column">
     <div class="ui fluid raised card chatbox">
-      <div class="content">
+      <div class="content" style="overflow-y: auto;overflow-x: hidden;">
         <div class="ui inverted vertical menu">
           <%= link_to "Friends", users_path, class:"active item"%>
           <% current_user.friendships.each do |friend| %>
             <% if User.where(id: friend.friend_id).first.avatar.attached? %>
-              <%= link_to '/user/'+friend.friend_id.to_s, class:"item" do %>
-                <div class="ui two column grid">
-                  <div class="two wide column">
-                  <%= image_tag User.where(id: friend.friend_id).first.avatar, class: "profile-pic", style:"vertical-align: text-bottom"%>
-                  </div>
-                  <div class="ten wide column"><%= User.where(id: friend.friend_id).first.username %></div> 
-                </div>       
-              <% end %>
+              <div class="item">
+                <%= link_to '/user/'+friend.friend_id.to_s do %>
+                  <div class="ui image label">
+                    <%= image_tag User.where(id: friend.friend_id).first.avatar%>
+                    <%= User.where(id: friend.friend_id).first.username %> 
+                  </div>       
+                <% end %>
+              </div>
             <% else %>
-              <%= link_to '/user/'+friend.friend_id.to_s, class:"item" do %>
-                <div class="ui two column grid">
-                  <div class="two wide column">
-                    <%= image_tag ("profile.jpg"), class: "profile-pic", style:"vertical-align: text-bottom"%>
-                  </div>
-                  <div class="ten wide column"><%= User.where(id: friend.friend_id).first.username %></div> 
-                </div>       
-              <% end %>
+              <div class="item">
+                <%= link_to '/user/'+friend.friend_id.to_s do %>
+                  <div class="ui image label">
+                    <%= image_tag ("profile.jpg") %>
+                    <%= User.where(id: friend.friend_id).first.username %> 
+                  </div>       
+                <% end %>
+              </div>
             <%end%>
             
           <% end %>
