@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'chatroom#index'
+
+  
   
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -14,6 +16,10 @@ Rails.application.routes.draw do
   get 'users', to: 'users#show'
   get 'user/:id', to: 'user#show'
   post 'friendships', to: 'friendships#create'
+  # post 'unlike', to: 'likes#destroy'
+  resources :messages do
+    resources :likes
+  end
   # post 'friendships', to: 'friendships#destroy', method: delete
 
   mount ActionCable.server, at: '/cable'

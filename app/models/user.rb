@@ -4,6 +4,7 @@ class User < ApplicationRecord
     has_many :messages
     has_many :friendships
     has_many :friends, through: :friendships
+    has_many :likes, dependent: :destroy
     has_secure_password
     has_one_attached :avatar
 end
