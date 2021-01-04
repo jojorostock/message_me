@@ -1,0 +1,10 @@
+<div class="two wide column">
+    <% if @user.avatar.attached? %>
+        <%= image_tag @user.avatar, class: "profile-page-pic"%>
+    <% else %>
+        <%= image_tag ("profile.jpg"), class: "profile-page-pic"%>
+    <%end%>
+</div>
+<div class="two wide column">
+    <h1 style="color: <%= @user.color%>">@<%= @user.username%></h1>
+</div>
