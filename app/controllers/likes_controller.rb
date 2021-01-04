@@ -1,14 +1,15 @@
 class LikesController < ApplicationController
     before_action :find_message
+
     def create
         @message.likes.create(user_id: current_user.id)
-        puts("im creating")
+        redirect_to root_path
     end
 
     def destroy
-        like = @message.likes.where(user_id: current_user.id)
-        puts(like)
+        like = @message.likes.where(user_id: current_user.id).first
         like.destroy
+        redirect_to root_path
     end
 
 

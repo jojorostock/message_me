@@ -37,22 +37,21 @@
         <div class="three wide column">
         
           <div class="ui fluid image" style="text-align: center">
-            
-            <div class="ui right pointing red label">
-              
-              <%= message.likes.count %> likes
-            </div>
-            <% if message.likes.where(user_id: current_user.id).count > 0%>
-              <%= link_to message_like_path(message), method: :delete do %>
-                <i class="red heart icon"></i>
+            <div class="ui label">
+              <% if message.likes.where(user_id: current_user.id).count > 0%>
+                <%= link_to message_like_path(message.id, current_user), method: :delete do %>
+                  <i class="red heart icon"></i>
+                <% end %>
+              <% else %>
+                <%= link_to message_likes_path(message.id), method: :post do %>
+                  <i class="red heart outline icon"></i>
+                <% end %>
               <% end %>
-            <% else %>
-              <%= link_to message_likes_path(message), method: :post do %>
-                <i class="red heart outline icon"></i>
-              <% end %>
-            <% end %>
+              <div class="detail">
+                <%= message.likes.count %>
+              </div>
 
-            
+            </div>
             
             
           </div>

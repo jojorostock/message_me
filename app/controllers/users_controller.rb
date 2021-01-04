@@ -5,8 +5,8 @@ class UsersController < ApplicationController
 
     def profile
         @user = current_user
-        @messages = Message.where(user_id: current_user.id)
-        @friendships = Friendship.where(user_id: current_user.id)
+        @messages = current_user.messages
+        @friendships = current_user.friendships
     end
     
     def edit
