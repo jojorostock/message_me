@@ -9,7 +9,7 @@
 <tbody>
 <% @friendships.each do |friend| %>
     <tr>
-      <td data-label="Time" class=""><%= friend.created_at.to_formatted_s(:long_ordinal)%></td>
+      <td data-label="Time" class=""><%= friend.created_at.in_time_zone('Eastern Time (US & Canada)').to_formatted_s(:long_ordinal)%></td>
       <td data-label="Body" style="color: <%= User.where(id: friend.friend_id).first.color %>">
         
         <%= render 'shared/avatar_username', u: User.where(id: friend.friend_id).first, myClass: "profile-pic"%>

@@ -18,7 +18,7 @@
                   @<%= message.user.username %>
                 </em>
               <% end %>
-              <%= message.created_at.to_formatted_s(:short)%>
+              <%= message.created_at.in_time_zone('Eastern Time (US & Canada)').to_formatted_s(:short)%>
             </div>
             <div class="column" style="padding-top:5px">
               <div class="row"> 

@@ -4,26 +4,7 @@
         <div class="ui inverted vertical menu">
           <%= link_to "Friends", users_path, class:"active item"%>
           <% current_user.friendships.each do |friend| %>
-            <% if User.where(id: friend.friend_id).first.avatar.attached? %>
-              <div class="item">
-                <%= link_to '/user/'+friend.friend_id.to_s do %>
-                  <div class="ui image label">
-                    <%= image_tag User.where(id: friend.friend_id).first.avatar%>
-                    <%= User.where(id: friend.friend_id).first.username %> 
-                  </div>       
-                <% end %>
-              </div>
-            <% else %>
-              <div class="item">
-                <%= link_to '/user/'+friend.friend_id.to_s do %>
-                  <div class="ui image label">
-                    <%= image_tag ("profile.jpg") %>
-                    <%= User.where(id: friend.friend_id).first.username %> 
-                  </div>       
-                <% end %>
-              </div>
-            <%end%>
-            
+            <%= render 'friend', friend: friend%>
           <% end %>
         </div>
       </div>

@@ -14,9 +14,11 @@
         </div>
     </div>
 <% end %>
-<div class="field">
-    <%= f.label :avatar, "Avatar" %>
-    <div class="ui left icon image">
-        <%= f.file_field :avatar %>
+<% if edit_form %>
+    <div class="field">
+        <%= f.label :avatar, "Avatar" %>
+        <div class="ui left icon image">
+            <%= f.file_field :avatar %>
+        </div>
     </div>
-</div>
+<% end %>
