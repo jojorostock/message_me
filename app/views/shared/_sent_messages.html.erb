@@ -1,23 +1,26 @@
-<h2>Messages Sent</h2>
+<h2>
+    <i class="mail icon"></i>
+    Messages Sent
+</h2>
 <table class="ui selectable inverted table">
-<thead>
-    <tr>
-        <th class="four wide">Sent</th>
-        <th class="twelve wide">Message</th>
-    </tr>
-</thead>
-<tbody>
-<% @messages.each do |msg| %>
+    <thead>
         <tr>
-            <td data-label="Time" class=""><%= msg.created_at.in_time_zone('Eastern Time (US & Canada)').to_formatted_s(:long_ordinal)%></td>
-            <td data-label="Body" class="">
-                <%= msg.body%>
-                <% if msg.photo.attached? %>
-                    <br />
-                    <%= image_tag msg.photo, class: "message-body-pic"%>
-                <% end %>
-            </td>
+            <th class="four wide">Sent</th>
+            <th class="twelve wide">Message</th>
         </tr>
-<% end %>
-</tbody>
+    </thead>
+    <tbody>
+    <% @messages.each do |msg| %>
+            <tr>
+                <td data-label="Time" class=""><%= msg.created_at.in_time_zone('Eastern Time (US & Canada)').to_formatted_s(:long_ordinal)%></td>
+                <td data-label="Body" class="">
+                    <%= msg.body%>
+                    <% if msg.photo.attached? %>
+                        <br />
+                        <%= image_tag msg.photo, class: "message-body-pic"%>
+                    <% end %>
+                </td>
+            </tr>
+    <% end %>
+    </tbody>
 </table>
