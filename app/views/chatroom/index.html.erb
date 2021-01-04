@@ -4,56 +4,6 @@
 </h2>
 
 <div class="ui two column grid">
-  <div class="twelve wide column">
-    <div class="ui fluid raised card chatbox">
-      <div class="content" id="messages">
-        <div class="ui feed" id="message-container">
-          <%= render @messages %>
-        </div>
-      </div>
-      <div class="extra content">
-        <%= form_for(@message, html: {class: "ui reply form", role: "form"}, url: message_path, remote: true) do |f| %>
-          <div class="field">
-            <div class="ui fluid icon input">
-              <%= f.text_field :body%>
-              <%= f.file_field :photo %>
-              <%= f.button '<i class="bordered inverted red edit icon"></i>'.html_safe %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <div class="four wide column">
-    <div class="ui fluid raised card chatbox">
-      <div class="content" style="overflow-y: auto;overflow-x: hidden;">
-        <div class="ui inverted vertical menu">
-          <%= link_to "Friends", users_path, class:"active item"%>
-          <% current_user.friendships.each do |friend| %>
-            <% if User.where(id: friend.friend_id).first.avatar.attached? %>
-              <div class="item">
-                <%= link_to '/user/'+friend.friend_id.to_s do %>
-                  <div class="ui image label">
-                    <%= image_tag User.where(id: friend.friend_id).first.avatar%>
-                    <%= User.where(id: friend.friend_id).first.username %> 
-                  </div>       
-                <% end %>
-              </div>
-            <% else %>
-              <div class="item">
-                <%= link_to '/user/'+friend.friend_id.to_s do %>
-                  <div class="ui image label">
-                    <%= image_tag ("profile.jpg") %>
-                    <%= User.where(id: friend.friend_id).first.username %> 
-                  </div>       
-                <% end %>
-              </div>
-            <%end%>
-            
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render 'chat_menu'%>
+  <%= render 'friends_menu' %>
 </div>
