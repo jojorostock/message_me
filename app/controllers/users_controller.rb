@@ -7,6 +7,10 @@ class UsersController < ApplicationController
         @user = current_user
         @messages = current_user.messages
         @friendships = current_user.friendships
+        @likes = []
+        @user.likes.each do |like|
+            @likes.push(Message.where(id: like.message_id).first)
+        end
     end
     
     def edit
