@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   resources :messages do
     resources :likes
   end
+
+  resources :friendships
   # post 'friendships', to: 'friendships#destroy', method: delete
 
   mount ActionCable.server, at: '/cable'
