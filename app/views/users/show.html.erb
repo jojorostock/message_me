@@ -14,17 +14,7 @@
         <tr>
         
             <td data-label="User" class="center aligned" >
-                <% if u.avatar.attached? %>
-                    <%= image_tag u.avatar, class: "profile-pic", style:"vertical-align: text-bottom"%>
-                <% else %>
-                    <%= image_tag ("profile.jpg"), class: "profile-pic", style:"vertical-align: text-bottom"%>
-                <%end%>
-                <%= link_to '/user/'+u.id.to_s do %>
-                    <span style="color: <%= u.color%>">
-                        <%= u.username %>
-                    </span>
-                <%end%>
-                
+                <%= render 'shared/avatar_username', u: u, myClass: "profile-pic"%>
             </td>
             <td data-label="Message Count" class="center aligned">
                 <%= u.messages.count%>
