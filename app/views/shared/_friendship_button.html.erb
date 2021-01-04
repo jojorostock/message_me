@@ -1,6 +1,6 @@
-<% if @friendships.where(friend_id: u.id).first%>
-    <%= link_to 'Remove Friend?', friendships_path(friend_id: u.id),
-                class: "ui inverted red button", method: :post %>
+<% if f.where(friend_id: u.id).first%>
+    <%= link_to 'Remove Friend?', friendship_path(id: f.where(friend_id: u.id).first.id, friend_id: u.id),
+            class: "ui inverted red button", method: :delete %>
 <%else%>
     <%= link_to 'Add Friend?', friendships_path(friend_id: u.id),
                 class: "ui inverted green button", method: :post %>

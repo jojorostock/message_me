@@ -6,11 +6,4 @@
 
 <%= render 'shared/user_page'%>
 
-
-<% if @curr.friendships.where(friend_id: @user.id).first%>
-    <%= link_to 'Remove Friend?', friendship_path(friend_id: @user.id),
-            class: "ui inverted red button", method: :delete %>
-<%else%>
-    <%= link_to 'Add Friend?', friendships_path(friend_id: @user.id),
-            class: "ui inverted green button", method: :post %>
-<%end%>
+<%= render 'shared/friendship_button', f: @curr.friendships, u: @user %>

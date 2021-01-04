@@ -33,7 +33,7 @@
                 <%= u.friendships.count%>
             </td>
             <td data-label="Friend" class="center aligned">
-                <%= render 'shared/friendship_button', u: u %>
+                <%= render 'shared/friendship_button', f: @friendships, u: u %>
             </td>
         </tr>
     <%end%>
