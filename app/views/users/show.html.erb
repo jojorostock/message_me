@@ -1,14 +1,22 @@
 <h2 class="ui center aligned medium icon header">
-  <i class="circular user icon"></i>
+  <i class="circular <%=current_user.color%> users icon"></i>
     Users
 </h2>
 <table class="ui selectable inverted table">
 <thead>
     <tr>
-        <th class="center aligned">User</th>
-        <th class="center aligned">Message Count</th>
-        <th class="center aligned">Friends Count</th>
-        <th class="center aligned">Add or Remove Friend</th>
+        <th class="center aligned">
+            <%= link_to '/users/name', style: "color: white" do %>User<%end%>
+        </th> 
+        <th class="center aligned">
+            <%= link_to '/users/messages', style: "color: white" do %>Message Count<%end%>
+        </th>
+        <th class="center aligned">
+            <%= link_to '/users/friends', style: "color: white" do %>Friends Count<%end%>
+        </th>
+        <th class="center aligned">
+            <%= link_to '/users/is_friends', style: "color: white" do %>Add or Remove Friend<%end%>
+        </th>
     </tr>
 </thead>
 <tbody>

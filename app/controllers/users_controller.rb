@@ -42,7 +42,19 @@ class UsersController < ApplicationController
     end
 
     def show
-        @users = User.all
+        if !params[:sort]
+            @users = User.all
+        elsif params[:sort] == 'name'
+            @users = User.all.sort_by{|u| u.username}
+        elsif params[:sort] == 'messages'
+            @users = User.all.sort_by{|u| -u.messages.count}
+        elsif params[:sort] == 'friends'
+            @users = User.all.sort_by{|u| -u.friendships.count}
+        elsif params[:sort] == 'is_friends'
+            @users = User.all.sort_by{|u| current_user.friendships.any? {|f| f.friend_id === u.id} ? 0 : 1}
+        else
+            @users = User.all
+        end
         @user = current_user
         @friendships = current_user.friendships
     end
