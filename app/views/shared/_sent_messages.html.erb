@@ -6,7 +6,8 @@
     <thead>
         <tr>
             <th class="four wide">Sent</th>
-            <th class="twelve wide">Message</th>
+            <th class="ten wide">Message</th>
+            <th class="two wide">Likes</th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
                         <%= image_tag msg.photo, class: "message-body-pic"%>
                     <% end %>
                 </td>
+                <td><%= msg.likes.count%></td>
             </tr>
     <% end %>
     </tbody>

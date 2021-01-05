@@ -6,7 +6,8 @@
 <thead>
     <tr>
         <th class="four wide">Friends Since</th>
-        <th class="twelve wide">Friend Name</th>
+        <th class="eight wide">Friend Name</th>
+        <th class="four wide">Add Friend?</th>
     </tr>
 </thead>
 <tbody>
@@ -18,6 +19,7 @@
         <%= render 'shared/avatar_username', u: User.where(id: friend.friend_id).first, myClass: "profile-pic"%>
         
       </td>
+      <td><%= render 'shared/friendship_button', f: current_user.friendships, u: User.where(id: friend.friend_id).first %></td>
     </tr>
 <% end %>
 </tbody>
