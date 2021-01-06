@@ -5,8 +5,8 @@
 <table class="ui selectable inverted table">
 <thead>
     <tr>
-        <th class="four wide">Friends Since</th>
-        <th class="eight wide">Friend Name</th>
+        <th class="four wide"><%= link_to @base_url+'friends_since', style: "color: white" do %>Friends Since<%end%></th>
+        <th class="eight wide"><%= link_to @base_url+'friends_name', style: "color: white" do %>Friend Name<%end%></th>
         <th class="four wide">Add Friend?</th>
     </tr>
 </thead>

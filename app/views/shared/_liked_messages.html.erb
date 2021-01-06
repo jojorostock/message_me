@@ -5,14 +5,16 @@
 <table class="ui selectable inverted table">
 <thead>
     <tr>
-        <th class="four wide">User</th>
-        <th class="twelve wide">Message</th>
+        <th class="four wide"><%= link_to @base_url+'liked_on', style: "color: white" do %>Liked On<%end%></th>
+        <th class="four wide"><%= link_to @base_url+'liked_user', style: "color: white" do %>User<%end%></th>
+        <th class="eight wide">Message</th>
     </tr>
 </thead>
 <tbody>
 <% @likes.each do |msg| %>
         <tr>
-            <td data-label="Time" class="">
+            <td data-label="Time"><%= msg.created_at.in_time_zone('Eastern Time (US & Canada)').to_formatted_s(:long_ordinal)%></td>
+            <td data-label="User" class="">
                 <%= render 'shared/avatar_username', u: msg.user, myClass: "profile-pic"%>            
             </td>
             <td data-label="Body" class="">

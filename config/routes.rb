@@ -13,9 +13,11 @@ Rails.application.routes.draw do
   get 'profile', to: 'users#profile'
   get 'profile/edit', to: 'users#edit'
   post 'profile/update', to: 'users#update'
+  get 'profile/:sort', to: 'users#profile'
   get 'users', to: 'users#show'
   get 'users/:sort', to: 'users#show'
   get 'user/:id', to: 'user#show'
+  get 'user/:id/:sort', to: 'user#show'
   post 'friendships', to: 'friendships#create'
   # post 'unlike', to: 'likes#destroy'
   resources :messages do

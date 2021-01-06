@@ -5,11 +5,32 @@ class UsersController < ApplicationController
 
     def profile
         @user = current_user
-        @messages = current_user.messages
-        @friendships = current_user.friendships
+
+        @base_url = '/profile/'
+
+        @messages = @user.messages
+        if params[:sort] === "message_sent"
+            @messages = @messages.sort_by{|m| -m.created_at.to_i}
+        elsif params[:sort] === "message_likes"
+            @messages = @messages.sort_by{|m| -m.likes.count}    
+        end
+        
+        @friendships = @user.friendships
+        if params[:sort] ==="friends_since"
+            @friendships = @friendships.sort_by{|f| f.created_at.to_i}
+        elsif params[:sort] ==="friends_name"
+            @friendships = @friendships.sort_by{|f| User.where(id: f.friend_id).first.username.upcase}
+        end
+
         @likes = []
         @user.likes.each do |like|
             @likes.push(Message.where(id: like.message_id).first)
+        end
+
+        if params[:sort] === "liked_on"
+            @likes = @likes.sort_by{|l| -l.created_at.to_i}
+        elsif params[:sort] === "liked_user"
+            @likes = @likes.sort_by{|l| l.user.username}
         end
     end
     
@@ -45,7 +66,7 @@ class UsersController < ApplicationController
         if !params[:sort]
             @users = User.all
         elsif params[:sort] == 'name'
-            @users = User.all.sort_by{|u| u.username}
+            @users = User.all.sort_by{|u| u.username.upcase}
         elsif params[:sort] == 'messages'
             @users = User.all.sort_by{|u| -u.messages.count}
         elsif params[:sort] == 'friends'

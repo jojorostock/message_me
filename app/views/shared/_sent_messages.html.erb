@@ -5,9 +5,9 @@
 <table class="ui selectable inverted table">
     <thead>
         <tr>
-            <th class="four wide">Sent</th>
+            <th class="four wide"><%= link_to @base_url+'message_sent', style: "color: white" do %>Sent<%end%></th>
             <th class="ten wide">Message</th>
-            <th class="two wide">Likes</th>
+            <th class="two wide"><%= link_to @base_url+'message_likes', style: "color: white" do %>Likes<%end%></th>
         </tr>
     </thead>
     <tbody>
