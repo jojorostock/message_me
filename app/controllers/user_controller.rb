@@ -6,9 +6,16 @@ class UserController < ApplicationController
             redirect_to profile_path
         end
 
+        @message = Message.new()
+        @friend = @user.id
+
         @base_url = '/user/'+@user.id.to_s+'/'
 
-        @messages = @user.messages
+        @messages = Message.where(user: @user.id, friend_id: current_user.id)+Message.where(user: current_user.id, friend_id: @user.id)
+        # @user.messages.each do |m|
+        #     @messages.push(m)
+        # end 
+        @messages = @messages.sort_by{|m| m.created_at.to_i}
         if params[:sort] === "message_sent"
             @messages = @messages.sort_by{|m| -m.created_at.to_i}
         elsif params[:sort] === "message_likes"
