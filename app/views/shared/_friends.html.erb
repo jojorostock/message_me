@@ -19,7 +19,7 @@
         <%= render 'shared/avatar_username', u: User.where(id: friend.friend_id).first, myClass: "profile-pic"%>
         
       </td>
-      <td><%= render 'shared/friendship_button', f: current_user.friendships, u: User.where(id: friend.friend_id).first %></td>
+      <td><% if friend.friend_id != current_user.id %><%= render 'shared/friendship_button', f: current_user.friendships, u: User.where(id: friend.friend_id).first %><%end%></td>
     </tr>
 <% end %>
 </tbody>

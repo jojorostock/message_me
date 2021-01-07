@@ -34,8 +34,12 @@ class UserController < ApplicationController
         @curr = current_user
         @likes = []
         @user.likes.each do |like|
-            @likes.push(Message.where(id: like.message_id).first)
+            msg = Message.where(id: like.message_id).first
+            if msg.friend_id == 0
+                @likes.push(msg)
+            end
         end
+        
         if params[:sort] === "liked_on"
             @likes = @likes.sort_by{|l| -l.created_at.to_i}
         elsif params[:sort] === "liked_user"
