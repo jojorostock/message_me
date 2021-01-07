@@ -1,5 +1,5 @@
 <div class="twelve wide column">
-    <div class="ui fluid raised card chatbox">
+    <div class="<%='ui fluid '+@user.color+' raised card chatbox'%>">
       <div class="content" id="messages">
         <div class="ui feed" id="<%= @friend!=0 ? 'message-container-friend-'+@friend.to_s+'-from-'+current_user.id.to_s : 'message-container'  %>">
           <%= render @messages %>
@@ -13,7 +13,7 @@
                 <%= f.text_field :body, style:"width: 100%" %>
               </div>
               <div class="four wide column">
-                <%= f.file_field :photo, placeholder:'i class="big image icon"></i>', style:"width:100%" %>
+                <%= f.file_field :photo, placeholder:'<i class="big image icon"></i>', style:"width:100%" %>
               </div>
               <%= f.number_field :friend_id, value: (@friend if @friend), style:"display:none" %>
 
