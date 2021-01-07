@@ -16,4 +16,13 @@ class MessageTest < ActiveSupport::TestCase
     @message = @user.messages.build(body: "test message")
     assert @message.valid?
   end
+
+  test "Message dependent on user" do
+    @user.save()
+    m = Message.new(body: "test", user_id: @user.id)
+    m.save
+    messagesCount = Message.count
+    User.where(id: @user.id).first.destroy
+    assert Message.count == messagesCount-1
+  end
 end
