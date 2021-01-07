@@ -40,17 +40,20 @@
             <div class="ui label">
               <% if message.likes.where(user_id: current_user.id).count > 0%>
                 <%= link_to message_like_path(message.id, current_user), method: :delete do %>
-                  <i class="red heart icon"></i>
+                  <div class="ui icon mini button" data-tooltip="<%= message.likes.map { |l| User.where(id: l.user.id).first.username}.join(', ') %>" data-position="top right" data-inverted="">
+                    <i class="red heart icon"></i>
+                  </div>
                 <% end %>
               <% else %>
                 <%= link_to message_likes_path(message.id), method: :post do %>
-                  <i class="red heart outline icon"></i>
+                  <div class="ui icon mini button" data-tooltip="<%= message.likes.count > 0 ? message.likes.map { |l| User.where(id: l.user.id).first.username}.join(', ') : "No Likes" %>" data-position="top right" data-inverted="">
+                    <i class="red heart outline icon"></i>
+                  </div>
                 <% end %>
               <% end %>
-              <div class="detail">
-                <%= message.likes.count %>
+              <div class="detail", style= "display: contents;">
+                <%= message.likes.count%>
               </div>
-
             </div>
             
             
