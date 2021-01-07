@@ -16,10 +16,12 @@ class UserController < ApplicationController
         #     @messages.push(m)
         # end 
         @messages = @messages.sort_by{|m| m.created_at.to_i}
+
+        @sentMessages = @user.messages.where(friend_id: 0)
         if params[:sort] === "message_sent"
-            @messages = @messages.sort_by{|m| -m.created_at.to_i}
+            @sentMessages = @sentMessages.sort_by{|m| -m.created_at.to_i}
         elsif params[:sort] === "message_likes"
-            @messages = @messages.sort_by{|m| -m.likes.count}    
+            @sentMessages = @sentMessages.sort_by{|m| -m.likes.count}    
         end
 
         @friendships = @user.friendships

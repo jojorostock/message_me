@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-    <% @messages.each do |msg| %>
+    <% @sentMessages.each do |msg| %>
             <tr>
                 <td data-label="Time" class=""><%= msg.created_at.in_time_zone('Eastern Time (US & Canada)').to_formatted_s(:long_ordinal)%></td>
                 <td data-label="Body" class="">
