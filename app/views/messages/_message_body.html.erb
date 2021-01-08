@@ -1,0 +1,11 @@
+<div class="column" style="padding-top:5px">
+    <div class="row"> 
+        <%= message.body %>
+    </div>
+    <% if message.photo.attached? %>
+        <br />
+        <div class="row"> 
+            <%= image_tag message.photo, class: "message-body-pic"%>
+        </div>
+    <% end %>
+</div>

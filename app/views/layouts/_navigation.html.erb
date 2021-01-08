@@ -8,31 +8,8 @@
   <%= link_to "Users", users_path, class: "item" %>
 </a>
 <% if logged_in? %>
-<div class="ui dropdown item">
-    Friends <i class="dropdown icon"></i>
-    <div class="menu">
-      <% current_user.friendships.each do |friend| %>
-        <%= link_to User.where(id: friend.friend_id).first.username, '/user/'+friend.friend_id.to_s, class: "nav-link item" %>
-      <%end%>
-    </div>
-</div>
+  <%= render 'layouts/friends_dropdown' %>
 <%end%>
 <div class="right menu">
-  <div class="ui dropdown item">
-    Account <i class="dropdown icon"></i>
-    <div class="menu">
-      <% if logged_in? %>
-        <%= link_to "Profile", profile_path, class: "nav-link item" %>    
-        <%= link_to "Edit Profile", profile_edit_path, class: "nav-link item" %>    
-        <%= link_to "Logout", logout_path, method: :delete, class: "nav-link item" %>   
-      <% else %>
-        <%= link_to "Login", login_path, class: "nav-link item" %>
-      <% end %> 
-    </div>
-  </div>
-  <% if !logged_in? %>
-    <div class="item">
-        <%= link_to "Login", login_path, class: "ui primary button" %>
-    </div>
-  <% end %>
+  <%= render 'layouts/account_menu'%>
 </div>

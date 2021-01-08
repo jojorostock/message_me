@@ -13,9 +13,7 @@
       <tr>
         <%= render 'shared/table_time_body', time: friend.created_at%>
         <td data-label="Body" style="color: <%= User.where(id: friend.friend_id).first.color %>">
-          
           <%= render 'shared/avatar_username', u: User.where(id: friend.friend_id).first, myClass: "profile-pic"%>
-          
         </td>
         <td><% if friend.friend_id != current_user.id %><%= render 'shared/friendship_button', f: current_user.friendships, u: User.where(id: friend.friend_id).first %><%end%></td>
       </tr>

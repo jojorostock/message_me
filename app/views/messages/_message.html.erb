@@ -8,59 +8,19 @@
         </div>
         <div class="ten wide column">
           <div class="ui one column grid" style="padding-left: 0">
-            <div class="column" style="padding-bottom:0">
-              <%= link_to current_user == message.user ? profile_path : 'user/'+message.user.id.to_s do %>
-                <em style="color: <%= message.user.color %>">
-                  @<%= message.user.username %>
-                </em>
-              <% end %>
-              <%= message.created_at.in_time_zone('Eastern Time (US & Canada)').to_formatted_s(:short)%>
-            </div>
-            <div class="column" style="padding-top:5px">
-              <div class="row"> 
-                <%= message.body %>
-              </div>
-              <% if message.photo.attached? %>
-                <br />
-                <div class="row"> 
-                  <%= image_tag message.photo, class: "message-body-pic"%>
-                </div>
-              <% end %>
-            </div>
+            <%= render 'messages/message_user', message: message%>           
+            <%= render 'messages/message_body', message: message%>           
           </div>
-              
         </div>
         <div class="three wide column">
-        
           <div class="ui fluid image" style="text-align: center">
             <div class="ui label">
-              <% if message.likes.where(user_id: current_user.id).count > 0%>
-                <%= link_to message_like_path(message.id, current_user), method: :delete do %>
-                  <i class="red heart icon chatting"></i>
-                  <div class="ui inverted popup top left">
-                    <% message.likes.each do |l| %>
-                      <%= render 'shared/user_image', myUser: User.where(id: l.user_id).first, myClass: "like-popup-pic" %>
-                    <% end %>
-                  </div>
-                <% end %>
-              <% else %>
-                <%= link_to message_likes_path(message.id), method: :post do %>
-                  <i class="<%= 'red heart outline icon '+(message.likes.count > 0 ? 'chatting' : '') %>"></i>
-                  <div class="ui inverted popup top left">
-                    <% message.likes.each do |l| %>
-                      <%= render 'shared/user_image', myUser: User.where(id: l.user_id).first, myClass: "like-popup-pic" %>
-                    <% end %>
-                  </div>
-                <% end %>
-              <% end %>
+              <%= render 'messages/message_like', message: message%>
               <div class="detail", style= "display: contents;">
                 <%= message.likes.count%>
               </div>
             </div>
-            
-            
           </div>
-          
         </div>
       </div>
     </div>

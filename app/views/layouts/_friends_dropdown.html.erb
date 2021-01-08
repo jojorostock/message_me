@@ -1,0 +1,8 @@
+<div class="ui dropdown item">
+    Friends <i class="dropdown icon"></i>
+    <div class="menu">
+        <% current_user.friendships.each do |friend| %>
+            <%= link_to User.where(id: friend.friend_id).first.username, '/user/'+friend.friend_id.to_s, class: "nav-link item" %>
+        <%end%>
+    </div>
+</div>

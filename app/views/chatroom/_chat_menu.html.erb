@@ -1,27 +1,12 @@
 <div class="twelve wide column">
-    <div class="<%='ui fluid '+@user.color+' raised card chatbox'%>">
-      <div class="content" id="messages">
-        <div class="ui feed" id="<%= @friend!=0 ? 'message-container-friend-'+@friend.to_s+'-from-'+current_user.id.to_s : 'message-container'  %>">
-          <%= render @messages %>
-        </div>
-      </div>
-      <div class="extra content">
-        <%= form_for(@message, html: {class: "ui reply form", role: "form"}, url: message_path, remote: true) do |f| %>
-          <div class="field">
-            <div class="ui fluid icon input grid">
-              <div class="twelve wide column"> 
-                <%= f.text_field :body, style:"width: 100%" %>
-              </div>
-              <div class="four wide column">
-                <%= f.file_field :photo, placeholder:'<i class="big image icon"></i>', style:"width:100%" %>
-              </div>
-              <%= f.number_field :friend_id, value: (@friend if @friend), style:"display:none" %>
-
-
-              <%= f.button '<i class="bordered inverted red edit icon"></i>'.html_safe %>
-            </div>
-          </div>
-        <% end %>
+  <div class="<%='ui fluid '+@user.color+' raised card chatbox'%>">
+    <div class="content" id="messages">
+      <div class="ui feed" id="<%= @friend!=0 ? 'message-container-friend-'+@friend.to_s+'-from-'+current_user.id.to_s : 'message-container'  %>">
+        <%= render @messages %>
       </div>
     </div>
+    <div class="extra content">
+      <%= render 'chatroom/message_send_form.html.erb'%>
+    </div>
   </div>
+</div>

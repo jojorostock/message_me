@@ -1,0 +1,19 @@
+<% if message.likes.where(user_id: current_user.id).count > 0%>
+    <%= link_to message_like_path(message.id, current_user), method: :delete do %>
+        <i class="red heart icon chatting"></i>
+        <div class="ui inverted popup top left">
+        <% message.likes.each do |l| %>
+            <%= render 'shared/user_image', myUser: User.where(id: l.user_id).first, myClass: "like-popup-pic" %>
+        <% end %>
+        </div>
+    <% end %>
+<% else %>
+    <%= link_to message_likes_path(message.id), method: :post do %>
+        <i class="<%= 'red heart outline icon '+(message.likes.count > 0 ? 'chatting' : '') %>"></i>
+        <div class="ui inverted popup top left">
+        <% message.likes.each do |l| %>
+            <%= render 'shared/user_image', myUser: User.where(id: l.user_id).first, myClass: "like-popup-pic" %>
+        <% end %>
+        </div>
+    <% end %>
+<% end %>

@@ -1,0 +1,8 @@
+<div class="column" style="padding-bottom:0">
+    <%= link_to current_user == message.user ? profile_path : 'user/'+message.user.id.to_s do %>
+        <em style="color: <%= message.user.color %>">
+            @<%= message.user.username %>
+        </em>
+    <% end %>
+    <%= message.created_at.in_time_zone('Eastern Time (US & Canada)').to_formatted_s(:short)%>
+</div>

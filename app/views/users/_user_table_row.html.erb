@@ -1,0 +1,14 @@
+<tr>
+    <td data-label="User" class="center aligned" >
+        <%= render 'shared/avatar_username', u: u, myClass: "profile-pic"%>
+    </td>
+    <td data-label="Message Count" class="center aligned">
+        <%= u.messages.count%>
+    </td>
+    <td data-label="Friends Count" class="center aligned">
+        <%= u.friendships.count%>
+    </td>
+    <td data-label="Friend" class="center aligned">
+        <%= render 'shared/friendship_button', f: @friendships, u: u %>
+    </td>
+</tr>
