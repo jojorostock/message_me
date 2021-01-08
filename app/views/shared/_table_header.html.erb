@@ -1,0 +1,12 @@
+<thead>
+    <tr>
+        <% for h in headers %>
+        <%# [link, width, Title] %>
+            <% if h[0] != nil%>
+                <th class="<%= h[1]!=nil ? h[1]+" wide" : "center aligned"%>"><%= link_to h[0], style: "color: white" do %><%= h[2] %><%end%></th>
+            <% else %>
+                <th class="<%= h[1]!=nil ? h[1]+" wide" : "center aligned"%>"><%= h[2] %></th>
+            <% end %>
+        <% end%>
+    </tr>
+</thead>

@@ -1,0 +1,7 @@
+<td data-label="Body">
+    <%= msg.body%>
+    <% if msg.photo.attached? %>
+        <br />
+        <%= image_tag msg.photo, class: "message-body-pic"%>
+    <% end %>
+</td>

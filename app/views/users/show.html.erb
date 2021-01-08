@@ -3,27 +3,16 @@
     Users
 </h2>
 <table class="ui selectable inverted table">
-<thead>
-    <tr>
-        <th class="center aligned">
-            <%= link_to '/users/name', style: "color: white" do %>User<%end%>
-        </th> 
-        <th class="center aligned">
-            <%= link_to '/users/messages', style: "color: white" do %>Message Count<%end%>
-        </th>
-        <th class="center aligned">
-            <%= link_to '/users/friends', style: "color: white" do %>Friends Count<%end%>
-        </th>
-        <th class="center aligned">
-            <%= link_to '/users/is_friends', style: "color: white" do %>Add or Remove Friend<%end%>
-        </th>
-    </tr>
-</thead>
+<%= render 'shared/table_header', headers: [
+            ['/users/name', nil, 'User'],
+            ['/users/messages', nil, 'Message Count'],
+            ['/users/friends', nil, 'Friend Count'],
+            ['/users/is_friends', nil, 'Add or Remove Friend']
+        ] %>
 <tbody>
 <% @users.each do |u| %>
     <% if u != @user %>
         <tr>
-        
             <td data-label="User" class="center aligned" >
                 <%= render 'shared/avatar_username', u: u, myClass: "profile-pic"%>
             </td>

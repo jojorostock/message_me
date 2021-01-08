@@ -3,27 +3,19 @@
     Liked Messages
 </h2>
 <table class="ui selectable inverted table">
-<thead>
-    <tr>
-        <th class="four wide"><%= link_to @base_url+'liked_on', style: "color: white" do %>Liked On<%end%></th>
-        <th class="four wide"><%= link_to @base_url+'liked_user', style: "color: white" do %>User<%end%></th>
-        <th class="eight wide">Message</th>
-    </tr>
-</thead>
+    <%= render 'shared/table_header', headers: [
+            [@base_url+'liked_on', 'four', 'LikedOn'],
+            [@base_url+'liked_user', 'four', 'User'],
+            [nil, 'eight', 'Message'],
+        ] %>
 <tbody>
 <% @likes.each do |msg| %>
         <tr>
-            <td data-label="Time"><%= msg.created_at.in_time_zone('Eastern Time (US & Canada)').to_formatted_s(:long_ordinal)%></td>
+            <%= render 'shared/table_time_body', time: msg.created_at%>            
             <td data-label="User" class="">
                 <%= render 'shared/avatar_username', u: msg.user, myClass: "profile-pic"%>            
             </td>
-            <td data-label="Body" class="">
-                <%= msg.body%>
-                <% if msg.photo.attached? %>
-                    <br />
-                    <%= image_tag msg.photo, class: "message-body-pic"%>
-                <% end %>
-            </td>
+            <%= render 'shared/table_message_body', msg: msg%>
         </tr>
 <% end %>
 </tbody>

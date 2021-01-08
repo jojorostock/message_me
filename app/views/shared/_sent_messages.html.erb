@@ -3,24 +3,16 @@
     Messages Sent
 </h2>
 <table class="ui selectable inverted table">
-    <thead>
-        <tr>
-            <th class="four wide"><%= link_to @base_url+'message_sent', style: "color: white" do %>Sent<%end%></th>
-            <th class="ten wide">Message</th>
-            <th class="two wide"><%= link_to @base_url+'message_likes', style: "color: white" do %>Likes<%end%></th>
-        </tr>
-    </thead>
+    <%= render 'shared/table_header', headers: [
+            [@base_url+'message_sent', 'four', 'Sent'],
+            [nil, 'ten', 'Message'],
+            [@base_url+'message_likes', 'two', 'Likes'],
+        ] %>
     <tbody>
     <% @sentMessages.each do |msg| %>
             <tr>
-                <td data-label="Time" class=""><%= msg.created_at.in_time_zone('Eastern Time (US & Canada)').to_formatted_s(:long_ordinal)%></td>
-                <td data-label="Body" class="">
-                    <%= msg.body%>
-                    <% if msg.photo.attached? %>
-                        <br />
-                        <%= image_tag msg.photo, class: "message-body-pic"%>
-                    <% end %>
-                </td>
+                <%= render 'shared/table_time_body', time: msg.created_at%>
+                <%= render 'shared/table_message_body', msg: msg%>
                 <td><%= msg.likes.count%></td>
             </tr>
     <% end %>

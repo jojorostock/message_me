@@ -3,24 +3,22 @@
     Friends
 </h2>
 <table class="ui selectable inverted table">
-<thead>
-    <tr>
-        <th class="four wide"><%= link_to @base_url+'friends_since', style: "color: white" do %>Friends Since<%end%></th>
-        <th class="eight wide"><%= link_to @base_url+'friends_name', style: "color: white" do %>Friend Name<%end%></th>
-        <th class="four wide">Add Friend?</th>
-    </tr>
-</thead>
-<tbody>
-<% @friendships.each do |friend| %>
-    <tr>
-      <td data-label="Time" class=""><%= friend.created_at.in_time_zone('Eastern Time (US & Canada)').to_formatted_s(:long_ordinal)%></td>
-      <td data-label="Body" style="color: <%= User.where(id: friend.friend_id).first.color %>">
-        
-        <%= render 'shared/avatar_username', u: User.where(id: friend.friend_id).first, myClass: "profile-pic"%>
-        
-      </td>
-      <td><% if friend.friend_id != current_user.id %><%= render 'shared/friendship_button', f: current_user.friendships, u: User.where(id: friend.friend_id).first %><%end%></td>
-    </tr>
-<% end %>
-</tbody>
+  <%= render 'shared/table_header', headers: [
+            [@base_url+'friends_since', 'four', 'Friends Since'],
+            [@base_url+'friends_name', 'eight', 'Friend Name'],
+            [nil, 'four', 'Add Friend?'],
+        ] %>
+  <tbody>
+    <% @friendships.each do |friend| %>
+      <tr>
+        <%= render 'shared/table_time_body', time: friend.created_at%>
+        <td data-label="Body" style="color: <%= User.where(id: friend.friend_id).first.color %>">
+          
+          <%= render 'shared/avatar_username', u: User.where(id: friend.friend_id).first, myClass: "profile-pic"%>
+          
+        </td>
+        <td><% if friend.friend_id != current_user.id %><%= render 'shared/friendship_button', f: current_user.friendships, u: User.where(id: friend.friend_id).first %><%end%></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
