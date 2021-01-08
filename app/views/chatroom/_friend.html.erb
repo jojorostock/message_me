@@ -1,19 +1,8 @@
-<% if User.where(id: friend.friend_id).first.avatar.attached? %>
-    <div class="item">
-        <%= link_to '/user/'+friend.friend_id.to_s do %>
-            <div class="ui image label">
-                <%= image_tag User.where(id: friend.friend_id).first.avatar%>
-                <%= User.where(id: friend.friend_id).first.username %> 
-            </div>       
-        <% end %>
-    </div>
-<% else %>
-    <div class="item">
-        <%= link_to '/user/'+friend.friend_id.to_s do %>
-            <div class="ui image label">
-                <%= image_tag ("profile.jpg") %>
-                <%= User.where(id: friend.friend_id).first.username %> 
-            </div>       
-        <% end %>
-    </div>
-<%end%>
+<div class="item">
+    <%= link_to '/user/'+friend.friend_id.to_s do %>
+        <div class="ui image label">
+            <%= render 'shared/user_image', myUser: User.where(id: friend.friend_id).first %>
+            <%= User.where(id: friend.friend_id).first.username %> 
+        </div>       
+    <% end %>
+</div>

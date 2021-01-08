@@ -1,8 +1,5 @@
-<% if u.avatar.attached? %>
-    <%= image_tag u.avatar, class: myClass, style:"vertical-align: text-bottom"%>
-<% else %>
-    <%= image_tag ("profile.jpg"), class: myClass, style:"vertical-align: text-bottom"%>
-<%end%>
+<%= render 'shared/user_image', myUser: u, myClass: myClass,  myStyle:"vertical-align: text-bottom"%>
+
 <%= link_to '/user/'+u.id.to_s do %>
     <span style="color: <%= u.color%>">
         <%= u.username %>

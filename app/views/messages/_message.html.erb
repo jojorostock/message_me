@@ -4,11 +4,7 @@
     <div class="chat-message summary <%= current_user == message.user ? 'current-user-message' : '' %>">
       <div class="ui two column grid">
         <div class="three wide column">
-          <% if message.user.avatar.attached? %>
-            <%= image_tag message.user.avatar, class: "message-pic"%>
-          <% else %>
-            <%= image_tag ("profile.jpg"), class: "message-pic"%>
-          <%end%>
+          <%= render 'shared/user_image', myUser: message.user, myClass: "message-pic" %>
         </div>
         <div class="ten wide column">
           <div class="ui one column grid" style="padding-left: 0">
@@ -43,11 +39,7 @@
                   <i class="red heart icon chatting"></i>
                   <div class="ui inverted popup top left">
                     <% message.likes.each do |l| %>
-                      <% if User.where(id: l.user_id).first.avatar.attached? %>
-                        <%= image_tag User.where(id: l.user_id).first.avatar, class: "like-popup-pic" %>
-                      <% else %>
-                        <%= image_tag ("profile.jpg"), class: "like-popup-pic" %>
-                      <%end%>
+                      <%= render 'shared/user_image', myUser: User.where(id: l.user_id).first, myClass: "like-popup-pic" %>
                     <% end %>
                   </div>
                 <% end %>
@@ -56,11 +48,7 @@
                   <i class="<%= 'red heart outline icon '+(message.likes.count > 0 ? 'chatting' : '') %>"></i>
                   <div class="ui inverted popup top left">
                     <% message.likes.each do |l| %>
-                      <% if User.where(id: l.user_id).first.avatar.attached? %>
-                        <%= image_tag User.where(id: l.user_id).first.avatar, class: "like-popup-pic"%>
-                      <% else %>
-                        <%= image_tag ("profile.jpg"), class: "like-popup-pic"%>
-                      <%end%>
+                      <%= render 'shared/user_image', myUser: User.where(id: l.user_id).first, myClass: "like-popup-pic" %>
                     <% end %>
                   </div>
                 <% end %>
