@@ -41,6 +41,11 @@ $(document).on("turbolinks:load", function() {
       .closest(".message")
       .transition("fade");
   });
+  $(".chatting").popup({
+    on: "hover",
+    inline: true
+  });
+
   submit_message();
   scroll_bottom();
 });
