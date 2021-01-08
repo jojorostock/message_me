@@ -1,6 +1,13 @@
-<div class="two wide column">
+<div class="row">
     <%= render 'shared/user_image', myUser: @user, myClass: "profile-page-pic" %>
 </div>
-<div class="two wide column">
-    <h1 style="color: <%= @user.color%>">@<%= @user.username%></h1>
+<div>
+    <h1 style="color: <%= @user.color%>">
+        @<%= @user.username%>
+        <% if current_user === @user %>
+            <%= link_to profile_edit_path do %>
+                <button class="ui inverted orange button">Edit Profile</button>
+            <% end %>
+        <% end %>
+    </h1>
 </div>

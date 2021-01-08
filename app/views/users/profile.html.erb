@@ -1,17 +1,7 @@
-<h2 class="ui center aligned medium icon header"><i class="circular <%=current_user.color%> user icon"></i></h2>
 
-<h1 style="color: <%= @user.color%>">
-    <div class="ui grid container">
-        <div class="row items-vert-center">
-            <%= render 'shared/user_header'%>
-            <div class="two wide column">
-                <%= link_to profile_edit_path do %>
-                    <button class="ui inverted orange button">Edit Profile</button>
-                <% end %>        
-            </div>
-        </div>
-    </div>
-    
-</h1>
+
+<div class="ui center aligned grid container">
+    <%= render 'shared/user_header'%>
+</div>
 
 <%= render 'shared/user_page'%>
